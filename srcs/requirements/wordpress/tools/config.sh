@@ -12,10 +12,11 @@ if [ ! -a "/var/www/wordpress/wp-config.php" ]; then
 	wp core install --allow-root \
 					--url="https://afaure.42.fr" \
 					--title="afaure.42.fr" \
-					--admin_user=$WD_ADMIN \
+					--admin_user=$WP_ADMIN \
 					--admin_password=$WP_ADMIN_PASSWORD \
 					--path="/var/www/wordpress"
-	wp user create	afaure \
+
+	wp user create	$WP_USER \
 					afaure@student.42.fr \
 					--user_pass=$WP_USER_PASS \
 					--allow-root \
