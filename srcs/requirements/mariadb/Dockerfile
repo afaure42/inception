@@ -5,12 +5,12 @@ RUN apt update -y && \
 	apt install mariadb-server-10.3 -y
 
 COPY /conf/mariadb.cnf /etc/mysql/mariadb.cnf
-COPY /tools /scripts
 
-RUN echo $SQL_USER
-
-RUN chmod -R 755 /scripts && \
-	chown -R mysql:mysql /var/lib/mysql/* && \
+RUN chown -R mysql:mysql /var/lib/mysql/* && \
 	chmod 755 -R /var/lib/mysql/*
 
+COPY /tools /scripts
+
 ENTRYPOINT ["/scripts/startup.sh"]  	
+
+CMD ["mysqld_safe"]
