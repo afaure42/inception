@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if [ ! -a "/var/www/wordpress/wp-config.php" ]; then
+sleep 2
+
+if [ ! -e "/var/www/wordpress/wp-config.php" ]; then
 	wp config create \
 	--dbname=$SQL_DATABASE \
 	--dbuser=$SQL_USER \
@@ -13,6 +15,7 @@ if [ ! -a "/var/www/wordpress/wp-config.php" ]; then
 					--url="https://afaure.42.fr" \
 					--title="afaure.42.fr" \
 					--admin_user=$WP_ADMIN \
+					--admin_email=$WP_ADMIN_MAIL \
 					--admin_password=$WP_ADMIN_PASSWORD \
 					--path="/var/www/wordpress"
 
@@ -23,8 +26,9 @@ if [ ! -a "/var/www/wordpress/wp-config.php" ]; then
 					--path="/var/www/wordpress"
 	fi
 
-if [ ! -a /run/php ]; then
-	mkdir /run/php
-	fi
+if [ ! -e /run/php ]; then
+	mkdir -p /run/php
+fi
 
-/usr/sbin/php-fpm7.3 -F
+echo "STARTING PHP-FPM"
+exec "$@"
