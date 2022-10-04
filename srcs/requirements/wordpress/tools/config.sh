@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 2
+sleep 10
 
 if [ ! -e "/var/www/wordpress/wp-config.php" ]; then
 	wp config create \
@@ -20,7 +20,7 @@ if [ ! -e "/var/www/wordpress/wp-config.php" ]; then
 					--path="/var/www/wordpress"
 
 	wp user create	$WP_USER \
-					afaure@student.42.fr \
+					$WP_USER_MAIL \
 					--user_pass=$WP_USER_PASS \
 					--allow-root \
 					--path="/var/www/wordpress"

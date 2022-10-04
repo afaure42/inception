@@ -3,8 +3,9 @@ FROM debian:buster
 RUN apt -y update && \
 	apt -y upgrade && \
 	apt -y install	wget \
-					php7.3 \
-					php-fpm \
+					php \
+					php-common \
+					php7.3-fpm \
 					php-mysql \
 					mariadb-client
 
