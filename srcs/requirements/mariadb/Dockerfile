@@ -4,7 +4,7 @@ RUN apt update -y && \
 	apt upgrade -y && \
 	apt install mariadb-server-10.3 -y
 
-COPY /conf/mariadb.cnf /etc/mysql/mariadb.cnf
+COPY /conf/mariadb.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 RUN chown -R mysql:mysql /var/lib/mysql/* && \
 	chmod 755 -R /var/lib/mysql/*
